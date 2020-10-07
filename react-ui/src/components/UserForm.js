@@ -7,14 +7,14 @@ import Success from "./Success";
 export class UserForm extends Component {
 	state = {
 		step: 1,
-		purchasePrice: 180000,
+		purchasePrice: 175000,
 		leaseTerm: 48,
-		securityDeposit: 36000,
-		monthlyHours: 75,
-		fixed: 2700,
-		variable: 2025,
-		monthly: 4725,
-		endOfTermBuyout: 68240,
+		securityDeposit: 35000,
+		monthlyHours: 40,
+		fixed: 2625,
+		variable: 1260,
+		monthly: 3885,
+		endOfTermBuyout: 93616,
 		email: "",
 		data: null
 	};
@@ -51,6 +51,13 @@ export class UserForm extends Component {
 			step: step - 1
 		});
 	};
+
+	handlePurchasePriceValues = input => e => {
+		var temp = e.target.value;
+		console.log(temp);
+		this.setState({ purchasePrice: temp });
+	};
+
 	// Handle Fields Change
 	handleChange = input => e => {
 		var temp = parseInt(e.target.value);
@@ -114,17 +121,21 @@ export class UserForm extends Component {
 	};
 
 	handleBlur = purchasePrice => e => {
-		console.log("blur: " + [purchasePrice]);
-		var temp;
-		var pp = parseInt(e.target.value);
+		//console.log("blur: " + e.target.value);
 
-		if (pp > 250000) {
+		//console.log(purchasePrice);
+
+		var temp = purchasePrice;
+		if (purchasePrice > 250000) {
 			temp = 250000;
-		} else if (pp < 100000) {
+		} else if (purchasePrice < 100000) {
 			temp = 100000;
 		}
 
+		//console.log("temp " + [purchasePrice]);
+
 		this.setState({ purchasePrice: temp });
+		//console.log("blur: " + e.target.value);
 	};
 
 	handleLeaseTerm = (purchasePrice, monthlyHours) => e => {
@@ -244,6 +255,9 @@ export class UserForm extends Component {
 						<FormUserDetails
 							nextStep={this.nextStep}
 							handleChange={this.handleChange}
+							handlePurchasePriceValues={
+								this.handlePurchasePriceValues
+							}
 							handlePurchaseInput={this.handlePurchaseInput}
 							handlePurchaseSlider={this.handlePurchaseSlider}
 							handleLeaseTerm={this.handleLeaseTerm}

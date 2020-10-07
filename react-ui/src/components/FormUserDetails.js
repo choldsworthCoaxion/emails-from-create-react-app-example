@@ -178,6 +178,7 @@ class FormUserDetails extends Component {
 			handlePurchaseInput,
 			handlePurchaseSlider,
 			handleBlur,
+			handlePurchasePriceValues,
 			handleLeaseTerm,
 			numberformat,
 			handleSecurityDeposit,
